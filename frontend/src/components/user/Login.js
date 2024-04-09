@@ -47,7 +47,7 @@ const Login = () => {
             dispatch(clearErrors());
         }
 
-    }, [dispatch, isAuthenticated, error])
+    }, [dispatch, isAuthenticated, error, navigate])
 
 
     const submitHandler = (e) => {
