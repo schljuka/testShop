@@ -7,7 +7,7 @@ const fileUpload = require('express-fileupload')
 const dotenv = require('dotenv');
 const path = require('path')
 
-const cors=require('cors');
+const cors = require('cors');
 
 const errorMiddleware = require('./middlewares/errors')
 
@@ -19,9 +19,7 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(fileUpload());
 
-app.use(
-    cors({ origin: 'https://melodic-dieffenbachia-58bcac.netlify.app', credentials: true })
-  )
+app.use(cors());
 
 
 // import all routes
