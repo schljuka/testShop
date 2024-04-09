@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { updatePassword, clearErrors } from '../../actions/userActions';
 import { UPDATE_PASSWORD_RESET } from '../../constants/userConstants';
 
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 
 const UpdatedPassword = () => {

@@ -1,8 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { MDBDataTable } from 'mdbreact'
+import { useNavigate } from 'react-router-dom'
+
 import MetaData from '../layout/MetaData'
-import Loader from '../layout/Loader'
 import Sidebar from './Sidebar'
 import { useDispatch, useSelector } from 'react-redux'
 import { newProduct, clearErrors } from '../../actions/productActions';
@@ -10,7 +9,7 @@ import { newProduct, clearErrors } from '../../actions/productActions';
 import { NEW_PRODUCT_RESET } from '../../constants/productConstants'
 
 
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 
 const NewProduct = () => {

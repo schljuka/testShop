@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { forgotPassword, clearErrors, resetPassword } from '../../actions/userActions';
+import { clearErrors, resetPassword } from '../../actions/userActions';
 
 import { useParams } from 'react-router-dom';
 

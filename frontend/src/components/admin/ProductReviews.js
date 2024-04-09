@@ -1,17 +1,17 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { MDBDataTable } from 'mdbreact';
 import MetaData from '../layout/MetaData';
 import Loader from '../layout/Loader'
 import Sidebar from './Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductReviews, clearErrors, deleteReview } from '../../actions/productActions';
+import { getProductReviews, deleteReview } from '../../actions/productActions';
 import toast from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 import { DELETE_REVIEW_RESET } from '../../constants/productConstants';
 
 const ProductReviews = () => {
-    const { id } = useParams();
+    // const { id } = useParams();
     const [productId, setProductId] = useState('');
 
     const navigate = useNavigate();

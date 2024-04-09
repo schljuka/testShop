@@ -1,9 +1,9 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment} from 'react'
 import MetaData from '../layout/MetaData'
 import CheckoutSteps from './CheckoutSteps'
 import toast from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
-import { useDispatch, useSelector } from 'react-redux'
+import {  useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 
 import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
@@ -26,7 +26,7 @@ const Payment = () => {
 
     const stripe = useStripe();
     const elements = useElements();
-    const dispatch = useDispatch();
+
     const navigate = useNavigate();
 
     const { user } = useSelector(state => state.auth);

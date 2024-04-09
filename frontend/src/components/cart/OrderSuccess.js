@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react'
 import MetaData from '../layout/MetaData'
 import { Link } from 'react-router-dom';
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 const OrderSuccess = () => {
     const dispatch = useDispatch();
     useEffect(()=>{

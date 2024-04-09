@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { updateProfile, loadUser, clearErrors } from '../../actions/userActions';
 import { UPDATE_PROFILE_RESET } from '../../constants/userConstants';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -51,7 +51,7 @@ const UpdateProfile = () => {
             })
         }
 
-    }, [dispatch,  error, navigate, isUpdated])
+    }, [dispatch,  error, navigate, isUpdated, user])
 
 
     const submitHandler = (e) => {
