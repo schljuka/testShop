@@ -19,9 +19,9 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(fileUpload());
 
-app.use(
-    cors({ origin: 'https://testshop-imy6.onrender.com', credentials: true })
-  )
+// app.use(
+//     cors({ origin: 'https://testshop-imy6.onrender.com', credentials: true })
+//   )
 
 
 // import all routes
