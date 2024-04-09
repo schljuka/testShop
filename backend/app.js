@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use(fileUpload());
 
 app.use(
-    cors({ origin: 'https://melodic-dieffenbachia-58bcac.netlify.app/', credentials: true })
+    cors({ origin: 'https://melodic-dieffenbachia-58bcac.netlify.app', credentials: true })
   )
 
 
