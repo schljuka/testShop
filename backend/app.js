@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use(fileUpload());
 
 app.use(
-    cors({ origin: 'https://cute-otter-e94fbb.netlify.app', credentials: true })
+    cors({ origin: 'https://testshop-imy6.onrender.com', credentials: true })
   )
 
 
