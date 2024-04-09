@@ -3,7 +3,8 @@ import React, { Fragment, useEffect, useState } from 'react'
 import MetaData from '../layout/MetaData'
 import Sidebar from './Sidebar'
 
-import { useAlert } from 'react-alert'
+import toast from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useNavigate, useParams } from 'react-router-dom';
@@ -22,7 +23,7 @@ const UpdateUser = () => {
     const navigate = useNavigate();
 
 
-    const alert = useAlert();
+
     const dispatch = useDispatch();
 
     const { user: authUser, loading, isAuthenticated } = useSelector(state => state.auth);
@@ -40,19 +41,19 @@ const UpdateUser = () => {
 
         }
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(clearErrors());
         }
 
         if (isUpdated) {
-            alert.success('User updated successfully')
+            toast.success('User updated successfully')
             navigate("/admin/users");
             dispatch({
                 type: UPDATE_USER_RESET
             })
         }
 
-    }, [dispatch, alert, error, navigate, isUpdated, id, user])
+    }, [dispatch,  error, navigate, isUpdated, id, user])
 
 
     const submitHandler = (e) => {

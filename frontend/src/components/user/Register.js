@@ -2,12 +2,13 @@ import React, { Fragment, useEffect, useState } from 'react'
 
 import MetaData from '../layout/MetaData'
 
-import { useAlert } from 'react-alert'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { register, clearErrors } from '../../actions/userActions'
 import { useNavigate } from 'react-router-dom';
 
-
+import toast from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Register = () => {
@@ -26,7 +27,7 @@ const Register = () => {
     const navigate = useNavigate();
 
 
-    const alert = useAlert();
+
     const dispatch = useDispatch();
 
     const { isAuthenticated, error, loading } = useSelector(state => state.auth);
@@ -36,11 +37,11 @@ const Register = () => {
             navigate('/')
         }
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(clearErrors());
         }
 
-    }, [dispatch, alert, isAuthenticated, error, navigate])
+    }, [dispatch, isAuthenticated, error, navigate])
 
 
     const submitHandler = (e) => {

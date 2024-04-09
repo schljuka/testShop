@@ -6,9 +6,12 @@ import Loader from '../layout/Loader'
 import Sidebar from './Sidebar'
 import { useDispatch, useSelector } from 'react-redux'
 import { newProduct, clearErrors } from '../../actions/productActions';
-import { useAlert } from 'react-alert'
+
 import { NEW_PRODUCT_RESET } from '../../constants/productConstants'
 
+
+import toast, { Toaster } from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NewProduct = () => {
 
@@ -41,7 +44,7 @@ const NewProduct = () => {
     ]
 
 
-    const alert = useAlert();
+
     const dispatch = useDispatch();
 
     const { loading, error, success } = useSelector(state => state.newProduct) || [];
@@ -50,16 +53,16 @@ const NewProduct = () => {
     useEffect(() => {
 
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(clearErrors())
         }
 
         if (success) {
             navigate("/admin/products")
-            alert.success('Product created successfully')
+            toast.success('Product created successfully')
             dispatch({ type: NEW_PRODUCT_RESET })
         }
-    }, [dispatch, alert, error, success, navigate])
+    }, [dispatch,  error, success, navigate])
 
 
 

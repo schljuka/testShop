@@ -4,13 +4,14 @@ import MetaData from '../layout/MetaData'
 import Loader from '../layout/Loader'
 import { useDispatch, useSelector } from 'react-redux'
 import { getOrderDetails, clearErrors } from '../../actions/orderActions';
-import { useAlert } from 'react-alert'
+import toast from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
 
 const OrderDetails = () => {
-    const alert = useAlert();
+
     const dispatch = useDispatch();
     const { id } = useParams();
 
@@ -21,11 +22,11 @@ const OrderDetails = () => {
     useEffect(() => {
         dispatch(getOrderDetails(id));
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(clearErrors())
         }
 
-    }, [dispatch, id, alert, error])
+    }, [dispatch, id,  error])
 
 
 

@@ -2,12 +2,13 @@ import React, { Fragment, useEffect, useState } from 'react'
 
 import MetaData from '../layout/MetaData'
 
-import { useAlert } from 'react-alert'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { forgotPassword, clearErrors } from '../../actions/userActions';
 
-
+import toast, { Toaster } from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ForgotPassword = () => {
 
@@ -17,7 +18,7 @@ const ForgotPassword = () => {
     const navigate = useNavigate();
 
 
-    const alert = useAlert();
+
     const dispatch = useDispatch();
 
 
@@ -25,15 +26,15 @@ const ForgotPassword = () => {
 
     useEffect(() => {
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(clearErrors());
         }
 
         if (message) {
-            alert.success(message)
+            toast.success(message)
         }
 
-    }, [dispatch, alert, error, navigate, message])
+    }, [dispatch, error, navigate, message])
 
 
     const submitHandler = (e) => {

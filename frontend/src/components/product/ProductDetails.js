@@ -8,7 +8,7 @@ import MetaData from '../layout/MetaData'
 import ListReviews from '../review/ListReviews';
 
 
-import { useAlert } from 'react-alert'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductDetails, newReview, clearErrors } from '../../actions/productActions'
 import { addItemToCart } from '../../actions/cartActions';
@@ -16,12 +16,15 @@ import { addItemToCart } from '../../actions/cartActions';
 import { NEW_REVIEW_RESET } from '../../constants/productConstants'
 
 
+import toast, { Toaster } from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const ProductDetails = () => {
 
     const { id } = useParams();
     const dispatch = useDispatch();
-    const alert = useAlert();
+
     const [quantity, setQuantity] = useState(1);
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
@@ -37,27 +40,27 @@ const ProductDetails = () => {
         dispatch(getProductDetails(id))
 
         if (error) {
-            alert.error(error);
+             toast.error(error);
             dispatch(clearErrors());
         }
 
         if (reviewError) {
-            alert.error(reviewError);
+          toast.error(reviewError);
             dispatch(clearErrors());
         }
         if (success) {
-            alert.success('Review posted successfully');
+            toast.success('Review posted successfully');
             dispatch({ type: NEW_REVIEW_RESET })
 
         }
 
-    }, [dispatch, alert, error, reviewError, success, id]);
+    }, [dispatch,  error, reviewError, success, id]);
 
 
 
     const addToCart = () => {
         dispatch(addItemToCart(id, quantity))
-        alert.success('Item Added to Cart')
+        toast.success('Item Added to Cart')
     }
 
 
@@ -231,7 +234,9 @@ const ProductDetails = () => {
                         <ListReviews reviews={product.reviews} />
                     )}
                 </Fragment>
+           
             }
+              
         </Fragment >
     )
 }

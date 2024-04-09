@@ -2,7 +2,8 @@ import React, { Fragment, useEffect, useState } from 'react'
 
 import MetaData from '../layout/MetaData'
 
-import { useAlert } from 'react-alert'
+import toast from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { forgotPassword, clearErrors, resetPassword } from '../../actions/userActions';
@@ -23,7 +24,7 @@ const NewPassword = () => {
     const navigate = useNavigate();
 
 
-    const alert = useAlert();
+  
     const dispatch = useDispatch();
 
 
@@ -31,16 +32,16 @@ const NewPassword = () => {
 
     useEffect(() => {
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(clearErrors());
         }
 
         if (success) {
-            alert.success('Password updated successfully')
+            toast.success('Password updated successfully')
             navigate('/login')
         }
 
-    }, [dispatch, alert, error, navigate, success])
+    }, [dispatch,  error, navigate, success])
 
 
     const submitHandler = (e) => {

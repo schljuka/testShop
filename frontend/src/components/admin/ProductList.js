@@ -6,7 +6,8 @@ import Loader from '../layout/Loader'
 import Sidebar from './Sidebar'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAdminProducts, deleteProduct, clearErrors } from '../../actions/productActions';
-import { useAlert } from 'react-alert'
+import toast from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 import { DELETE_PRODUCT_RESET } from '../../constants/productConstants'
 
 
@@ -18,7 +19,7 @@ const ProductList = () => {
 
     const { user, isAuthenticated } = useSelector(state => state.auth);
 
-    const alert = useAlert();
+
     const dispatch = useDispatch();
 
     const { loading, error, products } = useSelector(state => state.products)
@@ -30,21 +31,21 @@ const ProductList = () => {
         dispatch(getAdminProducts());
 
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(clearErrors())
         }
 
         if (deleteError) {
-            alert.error(deleteError);
+            toast.error(deleteError);
             dispatch(clearErrors())
         }
 
         if (isDeleted) {
-            alert.success('Product deleted successfully')
+            toast.success('Product deleted successfully')
             navigate("/admin/products")
             dispatch({ type: DELETE_PRODUCT_RESET })
         }
-    }, [dispatch, alert, error, deleteError, navigate, isDeleted])
+    }, [dispatch,  error, deleteError, navigate, isDeleted])
 
 
     const setProducts = () => {

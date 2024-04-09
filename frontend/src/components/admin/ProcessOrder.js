@@ -5,7 +5,8 @@ import Loader from '../layout/Loader'
 import Sidebar from './Sidebar'
 import { useDispatch, useSelector } from 'react-redux'
 import { getOrderDetails, updateOrder, clearErrors } from '../../actions/orderActions';
-import { useAlert } from 'react-alert'
+import toast from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 import { UPDATE_ORDER_RESET } from '../../constants/orderConstants'
 
 
@@ -16,7 +17,7 @@ const ProcessOrder = () => {
 
     const { id } = useParams();
     const navigate = useNavigate();
-    const alert = useAlert();
+
     const dispatch = useDispatch();
 
     const { user: authUser, isAuthenticated } = useSelector(state => state.auth);
@@ -32,15 +33,15 @@ const ProcessOrder = () => {
         dispatch(getOrderDetails(id));
 
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(clearErrors());
         }
 
         if (isUpdated) {
-            alert.success('Order updated successfully');
+            toast.success('Order updated successfully');
             dispatch({ type: UPDATE_ORDER_RESET });
         }
-    }, [dispatch, alert, error, isUpdated, id]);
+    }, [dispatch, error, isUpdated, id]);
 
     const updateOrderHandler = (id) => {
         const formData = new FormData();

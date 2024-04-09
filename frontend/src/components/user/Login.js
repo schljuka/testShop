@@ -4,11 +4,11 @@ import { Link, useNavigate, useLocation } from 'react-router-dom'
 import Loader from '../layout/Loader'
 import MetaData from '../layout/MetaData'
 
-import { useAlert } from 'react-alert'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { login, clearErrors } from '../../actions/userActions'
 
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -19,7 +19,7 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const alert = useAlert();
+
     const dispatch = useDispatch();
 
     const { isAuthenticated, error, loading } = useSelector(state => state.auth);
@@ -34,21 +34,21 @@ const Login = () => {
         if (isAuthenticated) {
             // const path = redirect.startsWith('/') ? redirect : `/${redirect}`;
             // navigate(path)
-            //alert.success("Login Successfully")
+      
 
             toast.success('User Login successfull');
-    //    alert.success("radi")
+ 
             navigate("/")
 
         }
 
         if (error) {
-            // alert.error(error);
+         
             toast.error(error);
             dispatch(clearErrors());
         }
 
-    }, [dispatch, alert, isAuthenticated, error])
+    }, [dispatch, isAuthenticated, error])
 
 
     const submitHandler = (e) => {
@@ -61,7 +61,7 @@ const Login = () => {
             {loading ? <Loader /> : (
                 <Fragment>
                     <MetaData title={"Login"} />
-                  
+
                     <div className="container container-fluid">
                         <div className="row wrapper">
                             <div className="col-10 col-lg-5">
@@ -99,10 +99,6 @@ const Login = () => {
 
                                     <Link to="/register" className="float-left mt-3">New User?</Link>
                                 </form>
-                                <Toaster
-                                    position="bottom-center"
-                                    reverseOrder={false}
-                                />
                             </div>
 
                         </div>

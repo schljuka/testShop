@@ -1,7 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import MetaData from '../layout/MetaData'
 import CheckoutSteps from './CheckoutSteps'
-import { useAlert } from 'react-alert'
+import toast from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 
@@ -22,7 +23,7 @@ const options = {
 
 const Payment = () => {
 
-    const alert = useAlert();
+
     const stripe = useStripe();
     const elements = useElements();
     const dispatch = useDispatch();
@@ -81,7 +82,7 @@ const Payment = () => {
             })
 
             if (result.error) {
-                alert.error(result.error.message)
+                toast.error(result.error.message)
                 document.querySelector('#pay_btn').disabled = false;
             } else {
                 // The payment is processed or not
@@ -114,13 +115,13 @@ const Payment = () => {
 
 
                 } else {
-                    alert.error('There is some issue while payment processing')
+                    toast.error('There is some issue while payment processing')
                 }
             }
 
         } catch (error) {
             document.querySelector('#pay_btn').disabled = false;
-            alert.error(error.response.data.errMessage)
+            toast.error(error.response.data.errMessage)
         }
     }
 

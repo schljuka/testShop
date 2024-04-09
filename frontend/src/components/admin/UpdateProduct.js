@@ -5,7 +5,8 @@ import MetaData from '../layout/MetaData'
 import Sidebar from './Sidebar'
 import { useDispatch, useSelector } from 'react-redux'
 import { updatedProduct, getProductDetails, clearErrors } from '../../actions/productActions';
-import { useAlert } from 'react-alert'
+import toast from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
 
 
@@ -14,7 +15,7 @@ const UpdateProduct = () => {
 
     const { id } = useParams();
     const navigate = useNavigate();
-    const alert = useAlert();
+
     const dispatch = useDispatch();
 
     const { user, isAuthenticated } = useSelector(state => state.auth);
@@ -62,24 +63,24 @@ const UpdateProduct = () => {
         }
 
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(clearErrors())
         }
 
         if (updateError) {
-            alert.error(updateError);
+            toast.error(updateError);
             dispatch(clearErrors())
         }
 
         if (isUpdated) {
-            alert.success('Product updated successfully')
+            toast.success('Product updated successfully')
             dispatch({ type: UPDATE_PRODUCT_RESET })
             dispatch(getProductDetails(id));
             navigate("/admin/products")
         }
 
 
-    }, [dispatch, alert, error, isUpdated, navigate, updateError, product, id])
+    }, [dispatch, error, isUpdated, navigate, updateError, product, id])
 
 
 
@@ -106,7 +107,7 @@ const UpdateProduct = () => {
 
         dispatch(updatedProduct(product._id, formData))
         //navigate("/admin/products");
-        //alert.success('Product updated successfully')
+        //toast.success('Product updated successfully')
     }
 
 

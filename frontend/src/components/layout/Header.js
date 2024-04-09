@@ -2,14 +2,17 @@ import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux'
-import { useAlert } from 'react-alert'
+
 import { logout } from '../../actions/userActions'
+
+import toast, { Toaster } from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const alert = useAlert();
+
 
     const { user, loading } = useSelector(state => state.auth);
     const { cartItems } = useSelector(state => state.cart);
@@ -17,7 +20,7 @@ const Header = () => {
     const logoutHandler = () => {
         dispatch(logout());
 
-        alert.success('Logged out successfully')
+        toast.success('Logged out successfully')
     }
 
 
@@ -41,6 +44,7 @@ const Header = () => {
                     </Link>
                 </div>
             </div>
+           
 
 
 
@@ -95,9 +99,11 @@ const Header = () => {
                     </div>
                 ) : !loading && <Link to="/login" className="btn ml-4" id="login_btn">Login</Link>}
             </div>
-
+            <Toaster/>
         </nav>
+      
     );
+  
 }
 
 export default Header;

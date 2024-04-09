@@ -6,7 +6,8 @@ import Loader from '../layout/Loader'
 import Sidebar from './Sidebar'
 import { useDispatch, useSelector } from 'react-redux'
 import { allUsers, clearErrors, deleteUser } from '../../actions/userActions';
-import { useAlert } from 'react-alert'
+import toast from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 import { DELETE_USER_RESET } from '../../constants/userConstants'
 
 
@@ -21,7 +22,7 @@ const UsersList = () => {
 
     const { user, isAuthenticated } = useSelector(state => state.auth);
 
-    const alert = useAlert();
+
     const dispatch = useDispatch();
 
     const { loading, error, users } = useSelector(state => state.allUsers)
@@ -33,16 +34,16 @@ const UsersList = () => {
         dispatch(allUsers());
 
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(clearErrors())
         }
         if (isDeleted) {
-            alert.success('User deleted successfully')
+            toast.success('User deleted successfully')
             navigate("/admin/users")
             dispatch({ type: DELETE_USER_RESET })
         }
 
-    }, [dispatch, alert, error, navigate, isDeleted])
+    }, [dispatch, error, navigate, isDeleted])
 
     const deleteUserHandler = (id) => {
         dispatch(deleteUser(id));
@@ -117,7 +118,7 @@ const UsersList = () => {
                         </div>
                         <div className="col-12 col-md-10">
                             <Fragment>
-                            <div className="container container-fluid tablemdb-w">
+                                <div className="container container-fluid tablemdb-w">
                                     <h1 className="my-5">All Users</h1>
                                     {loading ? <Loader /> : (
 

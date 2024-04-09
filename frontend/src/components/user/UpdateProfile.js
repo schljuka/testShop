@@ -2,14 +2,15 @@ import React, { Fragment, useEffect, useState } from 'react'
 
 import MetaData from '../layout/MetaData'
 
-import { useAlert } from 'react-alert'
+
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useNavigate } from 'react-router-dom';
 
 import { updateProfile, loadUser, clearErrors } from '../../actions/userActions';
 import { UPDATE_PROFILE_RESET } from '../../constants/userConstants';
-
+import toast, { Toaster } from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const UpdateProfile = () => {
@@ -23,7 +24,7 @@ const UpdateProfile = () => {
     const navigate = useNavigate();
 
 
-    const alert = useAlert();
+    
     const dispatch = useDispatch();
 
     const { user } = useSelector(state => state.auth);
@@ -36,13 +37,13 @@ const UpdateProfile = () => {
             setAvatarPreview(user.avatar.url);
         }
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(clearErrors());
 
         }
 
         if (isUpdated) {
-            alert.success('User updated successfully')
+            toast.success('User updated successfully')
             dispatch(loadUser());
             navigate("/me");
             dispatch({
@@ -50,7 +51,7 @@ const UpdateProfile = () => {
             })
         }
 
-    }, [dispatch, alert, error, navigate, isUpdated])
+    }, [dispatch,  error, navigate, isUpdated])
 
 
     const submitHandler = (e) => {

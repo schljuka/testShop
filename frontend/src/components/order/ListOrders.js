@@ -5,12 +5,13 @@ import MetaData from '../layout/MetaData'
 import Loader from '../layout/Loader'
 import { useDispatch, useSelector } from 'react-redux'
 import { myOrders, clearErrors } from '../../actions/orderActions';
-import { useAlert } from 'react-alert'
+import toast from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const ListOrders = () => {
 
-    const alert = useAlert();
+
     const dispatch = useDispatch();
 
     const { loading, error, orders } = useSelector(state => state.myOrders)
@@ -21,10 +22,10 @@ const ListOrders = () => {
         dispatch(myOrders());
 
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(clearErrors())
         }
-    }, [dispatch, alert, error])
+    }, [dispatch, error])
 
     const setOrders = () => {
         const data = {
@@ -87,7 +88,7 @@ const ListOrders = () => {
                 <h1 className='my-5'>My Orders</h1>
 
                 {loading ? <Loader /> : (
-                    <MDBDataTable 
+                    <MDBDataTable
                         data={setOrders()}
                         className='px-3 mdbtable'
                         bordered

@@ -6,13 +6,14 @@ import Loader from '../layout/Loader'
 import Sidebar from './Sidebar'
 import { useDispatch, useSelector } from 'react-redux'
 import { allOrders, clearErrors, deleteOrder } from '../../actions/orderActions';
-import { useAlert } from 'react-alert'
+import toast from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 import { DELETE_ORDER_RESET } from '../../constants/orderConstants'
 
 const OrdersList = () => {
     const navigate = useNavigate();
     const { user, isAuthenticated } = useSelector(state => state.auth);
-    const alert = useAlert();
+
     const dispatch = useDispatch();
     const { loading, error, orders } = useSelector(state => state.allOrders)
     const { isDeleted } = useSelector(state => state.order)
@@ -20,15 +21,15 @@ const OrdersList = () => {
     useEffect(() => {
         dispatch(allOrders());
         if (error) {
-            alert.error(error);
+            toast.error(error);
             dispatch(clearErrors())
         }
         if (isDeleted) {
-            alert.success('Order deleted successfully')
+            toast.success('Order deleted successfully')
             navigate("/admin/orders")
             dispatch({ type: DELETE_ORDER_RESET })
         }
-    }, [dispatch, alert, error, isDeleted, navigate])
+    }, [dispatch,  error, isDeleted, navigate])
 
     const deleteOrderHandler = (id) => {
         dispatch(deleteOrder(id));

@@ -6,7 +6,8 @@ import Loader from '../layout/Loader'
 import Sidebar from './Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductReviews, clearErrors, deleteReview } from '../../actions/productActions';
-import { useAlert } from 'react-alert';
+import toast from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 import { DELETE_REVIEW_RESET } from '../../constants/productConstants';
 
 const ProductReviews = () => {
@@ -15,7 +16,7 @@ const ProductReviews = () => {
 
     const navigate = useNavigate();
     const { user, isAuthenticated } = useSelector(state => state.auth);
-    const alert = useAlert();
+
     const dispatch = useDispatch();
     const { loading, reviews } = useSelector(state => state.productReviews) || {};
     const { isDeleted } = useSelector(state => state.review) || {};
@@ -26,10 +27,10 @@ const ProductReviews = () => {
             dispatch(getProductReviews(productId));
         }
         if (isDeleted) {
-            alert.success('Review deleted successfully');
+            toast.success('Review deleted successfully');
             dispatch({ type: DELETE_REVIEW_RESET });
         }
-    }, [dispatch, alert, productId, isDeleted]);
+    }, [dispatch,  productId, isDeleted]);
 
     const deleteReviewHandler = (id) => {
         dispatch(deleteReview(id, productId));
