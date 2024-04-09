@@ -142,7 +142,7 @@ export const userReducer = (state = {}, action) => {
                 ...state,
                 loading: false,
                 isUpdated: action.payload,
-                isUpdated: true
+                //isUpdated: true
             }
 
         case DELETE_USER_SUCCESS:
@@ -150,7 +150,7 @@ export const userReducer = (state = {}, action) => {
                 ...state,
                 loading: false,
                 isDeleted: action.payload,
-                isDeleted: true
+                //isDeleted: true
             }
 
         case UPDATE_PROFILE_RESET:
@@ -216,7 +216,7 @@ export const forgotPasswordReducer = (state = {}, action) => {
             return {
                 ...state,
                 success: action.payload,
-                success: true
+                //success: true
             }
 
         case FORGOT_PASSWORD_FAIL:

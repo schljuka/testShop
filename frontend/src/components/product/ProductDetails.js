@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
 
-import { Carousel, Button, Modal } from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
 import Loader from '../layout/Loader'
 import MetaData from '../layout/MetaData'
 import ListReviews from '../review/ListReviews';
@@ -16,7 +16,7 @@ import { addItemToCart } from '../../actions/cartActions';
 import { NEW_REVIEW_RESET } from '../../constants/productConstants'
 
 
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 
 
